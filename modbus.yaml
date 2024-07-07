@@ -1,0 +1,279 @@
+# abb ev3 012-100 3-phase smart meter
+# https://library.e.abb.com/public/e4d486c4f0124484a1459431d9deae0a/Modbus%20map_Rev_B.pdf
+#
+# include in configuration.yaml like this:
+# modbus: !include modbus.yaml
+
+  - name: abb_ev3
+    type: tcp
+    host: 192.168.1.2
+    port: 502
+    delay: 50
+    timeout: 10
+    sensors:
+      - name: abb_ev3_active_import_energy_total
+        scan_interval: 30
+        address: 0x5000
+        slave: 1
+        data_type: uint32
+        scale: 0.01
+        precision: 4
+        unit_of_measurement: "kWh"
+        device_class: energy
+        state_class: total_increasing
+      - name: abb_ev3_active_export_energy_total
+        scan_interval: 30
+        address: 0x5004
+        slave: 1
+        data_type: uint32
+        scale: 0.01
+        precision: 4
+        unit_of_measurement: "kWh"
+        device_class: energy
+        state_class: total_increasing
+      - name: abb_ev3_active_net_energy_total
+        scan_interval: 30
+        address: 0x5008
+        slave: 1
+        data_type: int32
+        scale: 0.01
+        precision: 4
+        unit_of_measurement: "kWh"
+        device_class: energy
+        state_class: total
+      - name: abb_ev3_active_import_energy_l1
+        scan_interval: 30
+        address: 0x5460
+        slave: 1
+        data_type: uint64
+        scale: 0.0001
+        precision: 4
+        unit_of_measurement: "kWh"
+        device_class: energy
+        state_class: total_increasing
+      - name: abb_ev3_active_import_energy_l2
+        scan_interval: 30
+        address: 0x5464
+        slave: 1
+        data_type: uint64
+        scale: 0.0001
+        precision: 4
+        unit_of_measurement: "kWh"
+        device_class: energy
+        state_class: total_increasing
+      - name: abb_ev3_active_import_energy_l3
+        scan_interval: 30
+        address: 0x5468
+        slave: 1
+        data_type: uint64
+        scale: 0.0001
+        precision: 4
+        unit_of_measurement: "kWh"
+        device_class: energy
+        state_class: total_increasing
+      - name: abb_ev3_active_export_energy_l1
+        scan_interval: 30
+        address: 0x546c
+        slave: 1
+        data_type: uint64
+        scale: 0.0001
+        precision: 4
+        unit_of_measurement: "kWh"
+        device_class: energy
+        state_class: total_increasing
+      - name: abb_ev3_active_export_energy_l2
+        scan_interval: 30
+        address: 0x5470
+        slave: 1
+        data_type: uint64
+        scale: 0.0001
+        precision: 4
+        unit_of_measurement: "kWh"
+        device_class: energy
+        state_class: total_increasing
+      - name: abb_ev3_active_export_energy_l3
+        scan_interval: 30
+        address: 0x5474
+        slave: 1
+        data_type: uint64
+        scale: 0.0001
+        precision: 4
+        unit_of_measurement: "kWh"
+        device_class: energy
+        state_class: total_increasing
+      - name: abb_ev3_active_net_energy_l1
+        scan_interval: 30
+        address: 0x5478
+        slave: 1
+        data_type: int64
+        scale: 0.0001
+        precision: 4
+        unit_of_measurement: "kWh"
+        device_class: energy
+        state_class: total
+      - name: abb_ev3_active_net_energy_l2
+        scan_interval: 30
+        address: 0x547c
+        slave: 1
+        data_type: int64
+        scale: 0.0001
+        precision: 4
+        unit_of_measurement: "kWh"
+        device_class: energy
+        state_class: total
+      - name: abb_ev3_active_net_energy_l3
+        scan_interval: 30
+        address: 0x5480
+        slave: 1
+        data_type: int64
+        scale: 0.0001
+        precision: 4
+        unit_of_measurement: "kWh"
+        device_class: energy
+        state_class: total
+      - name: abb_ev3_voltage_l1_n
+        scan_interval: 30
+        address: 0x5b00
+        slave: 1
+        data_type: uint32
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: "V"
+        device_class: voltage
+        state_class: measurement
+      - name: abb_ev3_voltage_l2_n
+        scan_interval: 30
+        address: 0x5b02
+        slave: 1
+        data_type: uint32
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: "V"
+        device_class: voltage
+        state_class: measurement
+      - name: abb_ev3_voltage_l3_n
+        scan_interval: 30
+        address: 0x5b04
+        slave: 1
+        data_type: uint32
+        scale: 0.1
+        precision: 1
+        unit_of_measurement: "V"
+        device_class: voltage
+        state_class: measurement
+      - name: abb_ev3_current_l1
+        scan_interval: 30
+        address: 0x5b0c
+        slave: 1
+        data_type: uint32
+        scale: 0.01
+        precision: 2
+        unit_of_measurement: "A"
+        device_class: current
+        state_class: measurement
+      - name: abb_ev3_current_l2
+        scan_interval: 30
+        address: 0x5b0e
+        slave: 1
+        data_type: uint32
+        scale: 0.01
+        precision: 2
+        unit_of_measurement: "A"
+        device_class: current
+        state_class: measurement
+      - name: abb_ev3_current_l3
+        scan_interval: 30
+        address: 0x5b10
+        slave: 1
+        data_type: uint32
+        scale: 0.01
+        precision: 2
+        unit_of_measurement: "A"
+        device_class: current
+        state_class: measurement
+      - name: abb_ev3_active_power_total
+        scan_interval: 30
+        address: 0x5b14
+        slave: 1
+        data_type: int32
+        scale: 0.01
+        precision: 2
+        unit_of_measurement: "W"
+        device_class: power
+        state_class: measurement
+      - name: abb_ev3_active_power_l1
+        scan_interval: 30
+        address: 0x5b16
+        slave: 1
+        data_type: int32
+        scale: 0.01
+        precision: 2
+        unit_of_measurement: "W"
+        device_class: power
+        state_class: measurement
+      - name: abb_ev3_active_power_l2
+        scan_interval: 30
+        address: 0x5b18
+        slave: 1
+        data_type: int32
+        scale: 0.01
+        precision: 2
+        unit_of_measurement: "W"
+        device_class: power
+        state_class: measurement
+      - name: abb_ev3_active_power_l3
+        scan_interval: 30
+        address: 0x5b1a
+        slave: 1
+        data_type: int32
+        scale: 0.01
+        precision: 2
+        unit_of_measurement: "W"
+        device_class: energy
+        state_class: measurement
+      - name: abb_ev3_frequency
+        scan_interval: 30
+        address: 0x5b2c
+        slave: 1
+        data_type: uint16
+        scale: 0.01
+        precision: 2
+        unit_of_measurement: "Hz"
+        device_class: frequency
+        state_class: measurement
+      - name: abb_ev3_power_factor_total
+        scan_interval: 30
+        address: 0x5b3a
+        slave: 1
+        data_type: uint16
+        scale: 0.001
+        precision: 3
+        device_class: power_factor
+        state_class: measurement
+      - name: abb_ev3_power_factor_l1
+        scan_interval: 30
+        address: 0x5b3b
+        slave: 1
+        data_type: uint16
+        scale: 0.001
+        precision: 3
+        device_class: power_factor
+        state_class: measurement
+      - name: abb_ev3_power_factor_l2
+        scan_interval: 30
+        address: 0x5b3c
+        slave: 1
+        data_type: uint16
+        scale: 0.001
+        precision: 3
+        device_class: power_factor
+        state_class: measurement
+      - name: abb_ev3_power_factor_l3
+        scan_interval: 30
+        address: 0x5b3d
+        slave: 1
+        data_type: uint16
+        scale: 0.001
+        precision: 3
+        device_class: power_factor
+        state_class: measurement
