@@ -11,32 +11,32 @@
     delay: 50
     timeout: 10
     sensors:
-      - name: abb_ev3_active_import_energy_total
+      - name: abb_ev3_active_import_energy
         scan_interval: 30
         address: 0x5000
         slave: 1
-        data_type: uint32
-        scale: 0.01
+        data_type: uint64
+        scale: 0.0001
         precision: 4
         unit_of_measurement: "kWh"
         device_class: energy
         state_class: total_increasing
-      - name: abb_ev3_active_export_energy_total
+      - name: abb_ev3_active_export_energy
         scan_interval: 30
         address: 0x5004
         slave: 1
-        data_type: uint32
-        scale: 0.01
+        data_type: uint64
+        scale: 0.0001
         precision: 4
         unit_of_measurement: "kWh"
         device_class: energy
         state_class: total_increasing
-      - name: abb_ev3_active_net_energy_total
+      - name: abb_ev3_active_net_energy
         scan_interval: 30
         address: 0x5008
         slave: 1
-        data_type: int32
-        scale: 0.01
+        data_type: int64
+        scale: 0.0001
         precision: 4
         unit_of_measurement: "kWh"
         device_class: energy

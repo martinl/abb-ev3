@@ -88,18 +88,18 @@ async def run_async_simple_client(comm, host, port, framer=Framer.SOCKET):
     print("get and verify data")
     try:
         # See all calls in client_calls.py
-	# serial_number
+        # serial_number
         #rr = await client.read_holding_registers(0x0402, 3)
 
-	# total_active_power
-        rr = await client.read_holding_registers(0x5b14, 2, slave=1)
+        # total_active_power
+        #rr = await client.read_holding_registers(0x5b14, 2, slave=1)
+        # abb_ev3_active_export_energy_total
+        rr = await client.read_holding_registers(0x5000, 4, slave=1)
 
-	# firmware version
+        # firmware version
         #rr = await client.read_holding_registers(0x8908, 8, slave=1)
         # total power factor
         # rr = await client.read_holding_registers(0x5B3A, 1, slave=1)
-	# total active power
-        #rr = await client.read_holding_registers(0x5B14, 4, slave=1)
     except ModbusException as exc:
         print(f"Received ModbusException({exc}) from library")
         client.close()
@@ -114,9 +114,9 @@ async def run_async_simple_client(comm, host, port, framer=Framer.SOCKET):
         client.close()
 
     pprint(rr.registers)
-    bytestring = struct.pack('>HH', *rr.registers)
-    value = struct.unpack('>l', bytestring)[0]
-    number_of_decimals = 2
+    bytestring = struct.pack('>HHHH', *rr.registers)
+    value = struct.unpack('>Q', bytestring)[0]
+    number_of_decimals = 4
 
     pprint(float(value) / 10 ** number_of_decimals)
 
